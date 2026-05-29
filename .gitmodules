@@ -1,0 +1,4 @@
+[submodule "nexusos/nexusos-api"]
+	path = nexusos/nexusos-api
+	url = https://github.com/shaymaatarek/NexouOs-MultiTenant-PrivateCode
+	branch = main
