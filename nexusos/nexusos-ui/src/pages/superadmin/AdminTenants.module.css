@@ -1,0 +1,14 @@
+.filtersRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.filterSelect {
+  width: auto !important;
+  min-width: 130px;
+  padding: 9px 14px !important;
+  flex-shrink: 0;
+}
+.detailGrid { display: flex; flex-direction: column; }

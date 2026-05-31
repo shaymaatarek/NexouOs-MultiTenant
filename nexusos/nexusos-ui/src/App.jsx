@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './styles/globals.css';
 
-import { ApiConfigProvider } from './context/ApiConfigContext';
-import { useTenants }        from './hooks/useTenants';
-import { useToast }          from './hooks/useToast';
-import { useTheme }          from './hooks/useTheme';
+import { ApiConfigProvider }        from './context/ApiConfigContext';
+import { useTenants }               from './hooks/useTenants';
+import { useToast }                 from './hooks/useToast';
+import { useTheme }                 from './hooks/useTheme';
 
+// ── Shared components ─────────────────────────────────────
 import Sidebar           from './components/Sidebar';
 import Topbar            from './components/Topbar';
 import ApiSettingsPanel  from './components/ApiSettingsPanel';
 import { Toast, LoadingSpinner } from './components/UI';
 
+// ── Tenant Admin pages (unchanged) ───────────────────────
 import LoginPage     from './pages/LoginPage';
 import RegisterPage  from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
@@ -18,20 +20,28 @@ import UsersPage     from './pages/UsersPage';
 import ProductsPage  from './pages/ProductsPage';
 import OrdersPage    from './pages/OrdersPage';
 
+// ── Super Admin portal ────────────────────────────────────
+import SuperAdminShell from './pages/superadmin/SuperAdminShell';
+
 import styles from './App.module.css';
 
 function AppShell() {
-  const { currentTenant, currentUser, login, register, logout, isLoggedIn, hydrating } = useTenants();
-  const { toast, showToast } = useToast();
-  const { theme, toggleTheme } = useTheme();
-  const [page,          setPage]          = useState('dashboard');
-  const [authMode,      setAuthMode]      = useState('login');
-  const [settingsOpen,  setSettingsOpen]  = useState(false);
+  const {
+    currentTenant, currentUser,
+    login, register, logout,
+    isLoggedIn, hydrating, isSuperAdmin,
+  } = useTenants();
 
-  /* ── Hydrating (restoring session from token) ─────── */
+  const { toast, showToast }   = useToast();
+  const { theme, toggleTheme } = useTheme();
+  const [page,         setPage]         = useState('dashboard');
+  const [authMode,     setAuthMode]     = useState('login');
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  /* ── Hydrating ─────────────────────────────────────── */
   if (hydrating) {
     return (
-      <div className={styles.app} style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <div className={styles.app} style={{ alignItems:'center', justifyContent:'center' }}>
         <LoadingSpinner message="Restoring session…" />
       </div>
     );
@@ -39,12 +49,12 @@ function AppShell() {
 
   /* ── Auth handlers ─────────────────────────────────── */
   const handleLogin = async (email, password) => {
-    await login(email, password); // throws on failure — LoginPage catches it
+    await login(email, password);
     setPage('dashboard');
   };
 
   const handleRegister = async (formData) => {
-    const user = await register(formData); // throws on failure
+    const user = await register(formData);
     showToast('Workspace created! Welcome, ' + user.name.split(' ')[0] + '!');
     setPage('dashboard');
   };
@@ -59,8 +69,7 @@ function AppShell() {
         }
         {settingsOpen && <ApiSettingsPanel onClose={() => setSettingsOpen(false)} />}
         <Toast message={toast.msg} visible={toast.visible} />
-        {/* Settings gear even on auth screen */}
-        <button
+        {/* <button
           onClick={() => setSettingsOpen(true)}
           title="API Settings"
           style={{
@@ -73,17 +82,31 @@ function AppShell() {
           }}
         >
           <i className="ti ti-settings" />
-        </button>
+        </button> */}
       </div>
     );
   }
 
-  /* ── Logged in ─────────────────────────────────────── */
+  /* ── Super Admin portal ────────────────────────────── */
+  if (isSuperAdmin) {
+    return (
+      <SuperAdminShell
+        user={currentUser}
+        onLogout={logout}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        toast={toast}
+        showToast={showToast}
+      />
+    );
+  }
+
+  /* ── Tenant Admin portal (original, untouched) ─────── */
   return (
     <div className={styles.app}>
       <Sidebar
-        tenant={currentTenant || { company: '…', plan: '…', id: '' }}
-        user={currentUser   || { name:    '…', role: '…', id: '' }}
+        tenant={currentTenant || { company:'…', plan:'…', id:'' }}
+        user={currentUser     || { name:'…',    role:'…', id:'' }}
         currentPage={page}
         onNavigate={setPage}
         onLogout={logout}

@@ -1,0 +1,18 @@
+.filtersRow { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+.filterSelect { width:auto !important; min-width:150px; padding:9px 14px !important; flex-shrink:0; }
+.dateRange { display:flex; align-items:center; gap:8px; }
+.clearBtn {
+  background:none; border:1px solid var(--border2); border-radius:var(--r);
+  padding:8px 12px; color:var(--text2); cursor:pointer; font-size:12px;
+  display:flex; align-items:center; gap:5px; white-space:nowrap;
+}
+.clearBtn:hover { border-color:var(--red); color:var(--red); }
+.actionBadge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600;
+  text-transform:capitalize;
+}
+.tenantPill {
+  padding:2px 9px; border-radius:20px; font-size:11px; font-weight:500;
+  background:var(--bg4); color:var(--text2); border:1px solid var(--border2);
+}

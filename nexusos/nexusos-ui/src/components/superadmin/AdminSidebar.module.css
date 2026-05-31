@@ -1,0 +1,65 @@
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  box-shadow: var(--shadow2);
+  z-index: 10;
+}
+
+.logoRow {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logoIcon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, #f76a6a, #ff9f7a);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 700; color: #fff; font-size: 15px;
+  flex-shrink: 0;
+}
+.logoText { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.2; }
+.logoBadge {
+  font-size: 9px; font-weight: 700;
+  color: var(--red); background: #f76a6a18;
+  border: 1px solid #f76a6a35;
+  padding: 2px 6px; border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.nav { flex: 1; padding: 10px 0; overflow-y: auto; }
+.navSection {
+  padding: 6px 20px 4px;
+  font-size: 10px; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+}
+.navItem {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 20px; cursor: pointer;
+  color: var(--text2);
+  border-left: 3px solid transparent;
+  font-size: 13px; transition: all 0.15s;
+}
+.navItem:hover { background: var(--bg3); color: var(--text); }
+.navItem.active { background: var(--bg4); color: var(--red); border-left-color: var(--red); }
+.navItem i { font-size: 17px; flex-shrink: 0; }
+
+.footer { padding: 14px 20px; border-top: 1px solid var(--border); }
+.userRow { display: flex; align-items: center; gap: 10px; }
+.userAvatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, #f76a6a, #ff9f7a);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: #fff; flex-shrink: 0;
+}
+.userInfo { flex: 1; min-width: 0; }
+.userName { font-size: 13px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.userRole { font-size: 11px; color: var(--red); }

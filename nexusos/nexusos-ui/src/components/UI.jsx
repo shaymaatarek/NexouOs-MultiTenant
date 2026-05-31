@@ -50,7 +50,7 @@ export function Button({ variant = 'primary', children, onClick, disabled, style
 
 /* ── StatusBadge ─────────────────────────────────────────── */
 export function StatusBadge({ status }) {
-  return <span className={`${styles.status} ${styles['status_' + status]}`}>{status}</span>;
+  return <span className={`${styles.status} ${styles['status_' + status.toLowerCase()]}`}>{status}</span>;
 }
 
 /* ── Tag ─────────────────────────────────────────────────── */

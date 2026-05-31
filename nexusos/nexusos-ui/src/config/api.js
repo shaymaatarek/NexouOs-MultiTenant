@@ -63,4 +63,24 @@ export const endpoints = (base) => ({
 
   // Dashboard stats (single endpoint returning aggregated counts)
   stats:           `${base}/charts/stats`,
+
+  
+  // ── Super Admin endpoints ──────────────────────────
+  // Platform dashboard
+  adminStats:          `${base}/admin/stats`,
+
+  // Tenant management
+  adminTenants:        `${base}/admin/tenants`,
+  adminTenant: (id)=>  `${base}/admin/tenants/${id}`,
+  adminSuspendTenant:(id)=> `${base}/admin/tenants/${id}/suspend`,
+  adminActivateTenant:(id)=>`${base}/admin/tenants/${id}/activate`,
+  adminDeleteTenant:(id)=> `${base}/admin/tenants/${id}`,
+
+  // Subscriptions
+  adminSubscriptions:       `${base}/admin/subscriptions`,
+  adminSubscription:(id)=>  `${base}/admin/subscriptions/${id}`,
+  adminUpdateSubscription:(id)=>`${base}/admin/subscriptions/${id}`,
+
+  // Audit logs
+  adminAuditLogs:      `${base}/admin/audit-logs`,
 });

@@ -66,5 +66,6 @@ export function useTenants() {
     updateTenant,
     isLoggedIn: !!session && hydrated,
     hydrating:  !!session && !hydrated,
+    isSuperAdmin:  currentUser?.role === "SA",
   };
 }

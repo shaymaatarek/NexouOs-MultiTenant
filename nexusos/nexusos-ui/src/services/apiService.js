@@ -146,3 +146,25 @@ export const apiGetOrder    = (id)       => get(ep().order(id));
 export const apiCreateOrder = (body)     => post(ep().addOrder, body);
 export const apiUpdateOrder = (id, body) => post(ep().updateOrder(id), body);
 export const apiDeleteOrder = (id)       => del(ep().deleteOrder(id));
+
+
+/* ══════════════════════════════════════════════════════
+   SUPER ADMIN
+══════════════════════════════════════════════════════ */
+
+// Platform stats
+export const apiAdminGetStats         = ()         => get(ep().adminStats);
+
+// Tenants
+export const apiAdminGetTenants       = ()         => get(ep().adminTenants);
+export const apiAdminGetTenant        = (id)       => get(ep().adminTenant(id));
+export const apiAdminSuspendTenant    = (id)       => post(ep().adminSuspendTenant(id));
+export const apiAdminActivateTenant   = (id)       => post(ep().adminActivateTenant(id));
+export const apiAdminDeleteTenant     = (id)       => del(ep().adminDeleteTenant(id));
+
+// Subscriptions
+export const apiAdminGetSubscriptions    = ()         => get(ep().adminSubscriptions);
+export const apiAdminUpdateSubscription  = (id, body) => put(ep().adminUpdateSubscription(id), body);
+
+// Audit logs
+export const apiAdminGetAuditLogs     = (params)   => get(ep().adminAuditLogs + (params ? '?' + new URLSearchParams(params).toString() : ''));
