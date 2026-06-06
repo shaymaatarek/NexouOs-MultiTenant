@@ -18,6 +18,11 @@ The platform provides:
     • Audit Logging 
 
 Architecture
+
+![C4 Context](docs/c4-context.png)
+
+![C4 Container](docs/c4-container.png)
+
 Architecture Style
 The backend follows Clean Architecture principles:
     • NexusOS-Models
@@ -25,11 +30,11 @@ The backend follows Clean Architecture principles:
     • NexusOS-Data
     • NexusOS-API
 Layer Responsibilities
-Layer	Responsibility
-Models	Business entities and core rules
-Business	Use cases and business logic
-Data	Database access and external services
-API	HTTP endpoints and request handling
+    Layer	Responsibility
+    Models	Business entities and core rules
+    Business	Use cases and business logic
+    Data	Database access and external services
+    API	HTTP endpoints and request handling
 
 System Context
 Platform Users
